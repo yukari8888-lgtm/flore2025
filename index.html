@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Flore 診断フォーム</title>
+</head>
+<body>
+  <h2>Flore 診断フォーム</h2>
+
+  <form method="post" action="★ここに Make の Webhook URL★">
+    <!-- hidden：LINE から渡される internalId と lineId -->
+    <input type="hidden" name="internalId" id="internalId">
+    <input type="hidden" name="lineId" id="lineId">
+
+    <p>最近、心が最もザワついた出来事と、その時に自分へかけた言葉を教えてください。</p>
+    <textarea name="answer1" rows="6" style="width:100%;"></textarea>
+
+    <br><br>
+
+    <button type="submit">送信する</button>
+  </form>
+
+  <script>
+    function getParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('internalId').value = getParam('internalId');
+      document.getElementById('lineId').value = getParam('lineId');
+    });
+  </script>
+</body>
+</html>
